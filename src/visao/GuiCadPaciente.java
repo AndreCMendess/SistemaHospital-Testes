@@ -3,7 +3,13 @@ package visao;
 
 import dao.ConvenioDAO;
 import dao.PacienteDAO;
+import exceptions.RequiredFieldsValidator;
+import exceptions.ValidationException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -171,41 +177,56 @@ public class GuiCadPaciente extends javax.swing.JInternalFrame {
             // Atribuindo valores aos atributos do Paciente com base nos campos preenchidos pelo usuário na tela
             pac.setNome(jtNome.getText());
             pac.setEndereco(jtEndereco.getText());
+            
             pac.setDataNascimento(sdf.parse(jtDataNasc.getText()));
             pac.setTelefone(jtTelefone.getText());
             pac.setCpf(jtCpf.getText());
+            pac.setEmail(jtEmail1.getText());
             pac.setRg(jtRG.getText());
+            
+            
+            Object convenioSelecionado = jcConvenio.getSelectedItem();
+            if(convenioSelecionado == null || convenioSelecionado.toString().equals("-Selecione-")){
+                
+                 throw new RequiredFieldsValidator("O convenio deve ser selecionado");
+                 
+            }
+            // Obtendo o nome do convênio selecionado pelo usuário
+            String conv = jcConvenio.getSelectedItem().toString();
 
-            // Verificando se um convênio foi selecionado no JComboBox
-            if (!(jcConvenio.getSelectedIndex() == 0)) {
+           
+            validarDadosEntrada(pac);
+            validarCamposObrigatorios(pac);
+            
+          
+            // Criando objeto ConvenioDAO para buscar o convênio no banco de dados
+            ConvenioDAO convDAO = new ConvenioDAO();
 
-                // Obtendo o nome do convênio selecionado pelo usuário
-                String conv = jcConvenio.getSelectedItem().toString();
+            // Buscando o convênio no banco de dados com base no nome selecionado pelo usuário
+            Convenio convenio = convDAO.buscarConvenioFiltro(conv);
 
-                // Criando objeto ConvenioDAO para buscar o convênio no banco de dados
-                ConvenioDAO convDAO = new ConvenioDAO();
+            // Atribuindo o ID do convênio ao paciente
+            pac.setConvenio(convenio.getIdConvenio());
+            
+          
 
-                // Buscando o convênio no banco de dados com base no nome selecionado pelo usuário
-                Convenio convenio = convDAO.buscarConvenioFiltro(conv);
-
-                // Atribuindo o ID do convênio ao paciente
-                pac.setConvenio(convenio.getIdConvenio());
-
-            } else {
-                JOptionPane.showMessageDialog(this,
-                        "Selecione um produto");
-            } // fecha else
-
-           // Criando objeto PacienteDAO para cadastrar o paciente no banco de dados
+            // Criando objeto PacienteDAO para cadastrar o paciente no banco de dados
             PacienteDAO pacDAO = new PacienteDAO();
             pacDAO.cadastrarPaciente(pac);
+            
+            
 
             // Mensagem de sucesso
             JOptionPane.showMessageDialog(this, "Paciente cadastrado com sucesso!");
 
+        } catch (RequiredFieldsValidator e) {
+            JOptionPane.showMessageDialog(this, "ERRO! " + e.getMessage());
+        } catch (ValidationException e) {
+            JOptionPane.showMessageDialog(this, "ERRO! " + e.getMessage());
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(this, "ERRO! Data de nascimento inválida.");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,
-                    "ERRO! " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "ERRO inesperado! " + e.getMessage());
         } // fecha catch
 
     }// fecha método
@@ -255,9 +276,86 @@ public class GuiCadPaciente extends javax.swing.JInternalFrame {
 
     private void jbCadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {
         cadastrar();
-        limpar();
+       
     }
+    
 
+    public void  validarDadosEntrada(Paciente pac){
+        
+        StringBuilder erros = new StringBuilder();
+        
+         if (pac.getNome().length() > 55) {
+           erros.append("O nome do paciente tem um limite de 55 caracteres.\n");
+        }
+        if (pac.getEndereco().length() > 200) {
+            erros.append("O endereço tem um limite máximo de 200 caracteres.\n");
+        }
+        
+        String dataNascimento = new SimpleDateFormat("dd/MM/yyyy").format(pac.getDataNascimento());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        try {
+            LocalDate date = LocalDate.parse(dataNascimento, formatter);
+            // Se a data foi parseada com sucesso, ela é válida
+        } catch (DateTimeParseException e) {
+            erros.append("A data de nascimento deve estar no formato dd/MM/yyyy e ser válida.\n");
+        }
+
+        String telefone = pac.getTelefone();
+        if (!telefone.matches("^\\(\\d{2}\\)\\d{4}-\\d{4}$")) {
+           erros.append("O telefone deve ser no formato (xx)xxxx-xxxx.\n");
+        }
+        if (pac.getCpf().length() > 11) {
+            erros.append("O CPF do paciente tem um limite de 11 caracteres.\n");
+        }
+        
+        if(erros.length() > 0){
+            throw new ValidationException(erros.toString().trim());
+        }
+
+    }
+    
+    public void validarCamposObrigatorios(Paciente pac){
+        
+         StringBuilder erros = new StringBuilder();
+
+        if (pac.getNome() == null || pac.getNome().isEmpty()) {
+
+            erros.append("Escreva o nome do paciente.\n");
+
+        }
+
+        if (pac.getEndereco() == null || pac.getEndereco().isEmpty()) {
+            erros.append("Escreva o endereço do paciente.\n");
+        }
+
+        if (pac.getDataNascimento() == null) {
+            erros.append("Escreva a data de nascimento do paciente.\n");
+        }
+
+        if (pac.getTelefone() == null || pac.getTelefone().isEmpty()) {
+            erros.append("Escreva o Telefone do paciente.\n");
+        }
+        
+        if (pac.getCpf() == null || pac.getCpf().isEmpty()) {
+            erros.append("Escreva o CPF do paciente.\n");
+        }
+        
+        if (pac.getRg() == null || pac.getRg().isEmpty()) {
+            erros.append("Escreva o RG do paciente.\n");
+        }
+
+        if (jcConvenio.getSelectedItem() == null) {
+            erros.append("Selecione um convenio para seu paciente.\n");
+        }
+
+        if (erros.length() > 0) {
+            System.out.println(erros.toString());
+            throw new RequiredFieldsValidator(erros.toString().trim());
+        }
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
@@ -281,3 +379,4 @@ public class GuiCadPaciente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtTelefone;
     // End of variables declaration//GEN-END:variables
 }
+
