@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>[#SIS-1] Cadastro do paciente com campos obrigatorios e opção de selecionar um convenio cadastrado no sistema</title>
+    <meta http-equiv="Content-Type" Content="application/vnd.ms-word; charset=UTF-8">
+        <style type="text/css">
+
+.tableBorder, .grid
+{
+    background-color: #fff;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableBorder td, .grid td
+{
+    vertical-align: top;
+    padding: 2px;
+    border: 1px solid #ccc;
+}
+
+.noPadding
+{
+    padding: 0 !important;
+}
+
+h3 .subText
+{
+    font-size: 60%;
+    font-weight: normal;
+}
+
+.tabLabel
+{
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-bottom:none;
+    padding: 2px;
+    display: inline;
+}
+
+td.blank
+{
+    padding: 0;
+    margin: 0;
+}
+
+.blank td
+{
+    border: none;
+}
+
+#descriptionArea
+{
+    margin: 0;
+    padding: 2px;
+    border: 1px solid #ccc;
+}
+
+hr
+{
+    border-top:1px solid #aaa;
+}
+
+hr.fullcontent
+{
+  height: 15px;
+  padding: 10px 0;
+  background: #fff url('https://andrecmendes.atlassian.net/images/icons/hr.gif') no-repeat scroll center;
+}
+
+</style>
+
+</head>
+<body>
+
+<table class="tableBorder" cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td bgcolor="#f0f0f0" width="100%" colspan="2" valign="top">
+                            <h3 class="formtitle">
+                        [SIS-1]&nbsp;<a href="https://andrecmendes.atlassian.net/browse/SIS-1">Cadastro do paciente com campos obrigatorios e opção de selecionar um convenio cadastrado no sistema</a>
+            <span class="subText">
+               Criado: 17/set/24                   &nbsp;Atualizado(a): 17/set/24
+
+                                    &nbsp;A vencer: 20/set/24
+                                            </span>
+            </h3>
+        </td>
+    </tr>
+    <tr>
+        <td width="20%"><b>Status:</b></td>
+        <td width="80%">Tarefas pendentes</td>
+    </tr>
+    <tr>
+        <td width="20%"><b>Projeto:</b></td>
+        <td width="80%"><a href="https://andrecmendes.atlassian.net/secure/BrowseProject.jspa?id=10000">SistemaHospitalar</a></td>
+    </tr>
+
+        <tr>
+            <td><b>Componentes:</b></td>
+            <td>
+                            Nenhum
+                </td>
+    </tr>
+    
+
+        <tr>
+            <td><b>Versões afetadas:</b></td>
+            <td>
+                            Nenhum
+                </td>
+    </tr>
+    
+
+        <tr>
+            <td><b>Versões corrigidas:</b></td>
+            <td>
+                            Nenhum
+                </td>
+    </tr>
+    
+    
+    </table>
+
+<br />
+<table class="grid" cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td bgcolor="#f0f0f0" valign="top" width="20%">
+            <b>Tipo:</b>
+        </td>
+        <td bgcolor="#ffffff" valign="top"  width="30%" >
+            Bug
+        </td>
+
+                    <td bgcolor="#f0f0f0">
+                <b>Prioridade:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top" nowrap>
+                High
+            </td>
+            </tr>
+    <tr>
+                        <td bgcolor="#f0f0f0" valign="top" width="20%">
+                <b>Relator:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top"  width="30%" >
+                                        
+                
+        
+            <a class="user-hover" rel="712020:012f699f-1093-4c25-88eb-46c4c5e2abfa"
+                id="word_reporter_712020:012f699f-1093-4c25-88eb-46c4c5e2abfa"
+                href="https://andrecmendes.atlassian.net/secure/ViewProfile.jspa?accountId=712020%3A012f699f-1093-4c25-88eb-46c4c5e2abfa">
+                    Andre Chagas Mendes
+                </a>
+
+                            </td>
+        
+                    <td bgcolor="#f0f0f0" width="20%">
+                <b>Responsável:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top" nowrap  width="30%" >
+                                        
+                
+        
+            <a class="user-hover" rel="712020:012f699f-1093-4c25-88eb-46c4c5e2abfa"
+                id="word_assignee_712020:012f699f-1093-4c25-88eb-46c4c5e2abfa"
+                href="https://andrecmendes.atlassian.net/secure/ViewProfile.jspa?accountId=712020%3A012f699f-1093-4c25-88eb-46c4c5e2abfa">
+                    Andre Chagas Mendes
+                </a>
+
+                            </td>
+            </tr>
+    	<tr>
+		<td bgcolor="#f0f0f0" width="20%">
+			<b>Resolução:</b>
+		</td>
+		<td bgcolor="#ffffff" valign="top" width="30%" nowrap>
+            				Não resolvido(s)
+                    </td>
+                    <td bgcolor="#f0f0f0" width="20%">
+                <b>Votos:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top" width="30%" nowrap>
+                0
+            </td>
+        
+    </tr>
+    
+        <tr>
+        <td bgcolor="#f0f0f0" width="20%">
+            <b>Categorias:</b>
+        </td>
+        <td id="labels-10000-value" class="value" bgcolor="#ffffff" valign="top" colspan="3" nowrap>
+                            Nenhum
+                    </td>
+    </tr>
+    
+    	<tr>
+        		<td bgcolor="#f0f0f0" width="20%"><b>Estimativa de trabalho restante:</b></td>
+        <td bgcolor="#ffffff" valign="top" nowrap width="80%" colspan="3">
+                            2 days
+            		</td>
+    </tr>
+    <tr>
+                <td bgcolor="#f0f0f0" width="20%"><b>Tempo gasto:</b></td>
+		<td bgcolor="#ffffff" valign="top" nowrap width="80%" colspan="3">
+                            Desconhecido
+            		</td>
+	</tr>
+    <tr>
+                <td bgcolor="#f0f0f0" width="20%"><b>Estimativa original:</b></td>
+		<td bgcolor="#ffffff" valign="top" nowrap width="80%" colspan="3">
+                            2 days
+            		</td>
+    </tr>
+    
+    	<tr>
+
+		<td bgcolor="#f0f0f0" width="20%" valign="top">
+			<b>Ambiente:</b>
+		</td>
+		<td bgcolor="#ffffff" valign="top" colspan="3">
+            <p>Windows 11</p>
+
+<p>Banco de dados MYSQL Workbench  8.0</p>
+		</td>
+	</tr>
+    </table>
+
+
+
+    <br />
+
+    	<table class="grid" cellpadding="0" cellspacing="0" border="0" width="100%">
+            
+
+                <tr>
+            <td bgcolor="#f0f0f0" width=20% valign=top>
+                <b>Anexos:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top">
+                                    <img src="https://andrecmendes.atlassian.net/images/icons/attach/image.gif" height="16" width="16" border="0" alt="Arquivo PNG">
+                    exemplo1bug.png &nbsp;&nbsp;&nbsp;
+                                    <img src="https://andrecmendes.atlassian.net/images/icons/attach/image.gif" height="16" width="16" border="0" alt="Arquivo PNG">
+                    exemploBug2.png &nbsp;&nbsp;&nbsp;
+                            </td>
+        </tr>
+        
+    
+
+
+
+</table>
+
+    <br/>
+
+    <table cellpadding="2" cellspacing="0" border="0" width="100%" align="center">
+    <tr>
+        <td bgcolor="#bbbbbb" width="1%" nowrap align="center">
+            &nbsp;<font color="#ffffff"><b>Descrição</b></font>&nbsp;
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    </table>
+
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td id="descriptionArea">
+            <p><b>1 -</b> Ao selecionar um convenio e preencher o campo de data ,o sistema permite que o paciente seja cadastrado apesar dos campos de nome ,cpf , rg , endereço , telefone e email estarem em branco.</p>
+
+<p><b>Resultado Esperado:</b> O sistema so deve permitir o cadastro do paciente após os campos obrigatorios serem preenchidos.</p>
+
+<p><b>2 -</b> No caso de não selecionar o convenio e tentar cadastrar aparecera a mensagem “Selecione um produto” . um contexto que não esta relacionado com o projeto.</p>
+
+<p><b>Resultado Esperado:</b> A mensagem de erro deve ser relacionada ao cenario exemplo: “ Selecione um convenio” ou “ Preencha os campos obrigatorios”.</p>
+
+<p><b>Passos para Reproduzir o Bug:</b></p>
+
+<ol>
+	<li>Acesse a tela de cadastro de paciente.</li>
+	<li>No caso 1 , preencha o campo de convenio e data e deixe o resto dos campos em branco e cadastre o paciente.</li>
+	<li>No caso 2, preencha apenas o campo de data , senmselecionar um convênio cadastre o paciente.</li>
+</ol>
+
+            <br/>
+        </td>
+    </tr>
+    </table>
+
+Gerado em Tue Sep 17 19:23:22 UTC 2024 por Andre Chagas Mendes usando JIRA 1001.0.0-SNAPSHOT#100266-rev:ad659bfedd37e84df77f3282f1ff9608fe72e5e4.
+
+</body>
+</html>
