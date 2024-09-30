@@ -149,6 +149,45 @@ public class PacienteServicosTest {
 
        
         
+   
+    @Test
+    public void whenBuscarPacienteThenReturnPaciente() throws SQLException {
+
+        List<Paciente> pacientes = new ArrayList<>();
+        pacientes.add(p);
+        pacientes.add(p2);
+
+        // Configura o mock para retorna uma lista de pacientes
+        Mockito.when(services.buscarPaciente()).thenReturn((ArrayList<Paciente>) pacientes);
+
+        List<Paciente> resposta = services.buscarPaciente();
+
+        // Verifica se a lista de pacientes  nao é nula 
+        assertNotNull(resposta);
+
+        // Verifica se lista contem o paciente p
+        assertTrue(resposta.contains(p));
+        
+        // Verifica se a lista contem o paciente p2
+        assertTrue(resposta.contains(p2));
+        
+        //Verifica se o nome do primeiro paciente da lista é Matheus Souza
+        assertEquals("Matheus Souza",resposta.get(0).getNome());
+        
+        // Verifica se o nome do segundo paciente da lista é Janaina
+        assertEquals("Janaina",resposta.get(1).getNome());
+        
+        // Verifica se tem mais de uma pessoa na lista
+        assertTrue(resposta.size() > 1);
+        
+        // Verifica se o tamanho da lista é 2
+        assertEquals(2, resposta.size());
+
+    }
+    
+    
+
+        
         
     
 
