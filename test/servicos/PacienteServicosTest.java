@@ -100,6 +100,51 @@ public class PacienteServicosTest {
          //Verifica se nenhum outro método foi chamado no mock após a exceção
          Mockito.verifyNoMoreInteractions(services);
     }
+    
+     @Test
+        public void whenBuscarPacienteComFiltroThenReturnPaciente() throws SQLException{
+            
+            List<Paciente> pacientes = new ArrayList<>();
+            pacientes.add(p);
+            
+            
+            Mockito.when(services.buscarPacienteFiltro(p.getNome())).thenReturn((ArrayList<Paciente>) pacientes);
+            
+            List<Paciente> resposta = services.buscarPacienteFiltro(p.getNome());
+            
+            //Verifica se a lista de pacientes nao esta vazia
+            assertNotNull(resposta);
+            //Verifica se o indice 0 da lista é um Paciente
+            assertEquals(Paciente.class, resposta.get(0).getClass());
+            //Verifica se o objeto buscado é o esperado
+            assertEquals(p,resposta.get(0));
+        }
+        
+         @Test
+        public void whenBuscarPacienteComFiltroThenReturnFail() throws SQLException{
+            
+            List<Paciente> pacientes = new ArrayList<>();
+            pacientes.add(p);
+            pacientes.add(p2);
+            
+            
+            //Configura o mock para retornar uma lista de pacientes quando buscar por um nome existente
+            when(services.buscarPacienteFiltro(p.getNome())).thenReturn((ArrayList<Paciente>) pacientes);
+            
+            //Configura o mock para retornar uma lista vazia quando buscar por um nome que não existe
+             when(services.buscarPacienteFiltro("NomeInexistente")).thenReturn(new ArrayList<>());
+            
+            List<Paciente> resposta = services.buscarPacienteFiltro("NomeInexistente");
+            
+             //Verifica se a lista de pacientes é nula
+             assertNotNull(resposta);
+             
+             //Verifica se a resposta esta vazia
+             assertTrue(resposta.isEmpty());
+             
+             //Verifica se a lista tem 0 pacientes 
+             assertEquals(0, resposta.size());
+        }
 
 
        
